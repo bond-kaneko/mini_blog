@@ -1,0 +1,19 @@
+version: '2'
+services:
+  db:
+    image: mysql:latest
+    environment:
+      - MYSQL_DB=pro_php
+      - MYSQL_ROOT_PASSWORD=password
+    ports:
+      - '33306:3306'
+  php:
+    build: ./php
+    ports:
+      - '888:80'
+    volumes:
+      - ../src:/var/www/html/
+    depends_on:
+      - db
+volumes:
+  db:
